@@ -3,12 +3,15 @@
  */
 package ch.zhaw.it.prog2.wordcloud;
 
+import ch.zhaw.it.prog2.MainWindow;
+import javafx.application.Application;
+
 public class App {
     public String getGreeting() {
         return "Hello World!";
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        Application.launch(MainWindow.class, args);
     }
 }
