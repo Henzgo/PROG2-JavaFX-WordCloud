@@ -7,6 +7,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class MainWindowController {
+    private WordModelDecorator wordModelDecorator;
 
     @FXML
     private Label labelTitle;
@@ -21,9 +22,21 @@ public class MainWindowController {
         labelTitle.textProperty().bind(textEntry.textProperty());
     }
 
+    public void setWordModel(WordModel wordModel) {
+        wordModelDecorator = new WordModelDecorator(wordModel);
+        wordModelDecorator.addListener(new IsObserver() {
+            @Override
+            public void update() {
+                textHistory.setText(wordModel.toString());
+            }
+        });
+    }
+
     @FXML
     void addText(ActionEvent event) {
-        textHistory.appendText(textEntry.getText() + System.lineSeparator());
+        for (String word : textEntry.getText().split(" ")) {
+            wordModelDecorator.addWord(word.toLowerCase());
+        }
     }
 
     @FXML

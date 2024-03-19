@@ -2,6 +2,8 @@ package ch.zhaw.it.prog2;
 
 import java.io.IOException;
 
+import ch.zhaw.it.prog2.wordcloud.MainWindowController;
+import ch.zhaw.it.prog2.wordcloud.WordModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,6 +11,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class MainWindow extends Application {
+
+    private final WordModel wordModel = new WordModel();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -26,8 +30,8 @@ public class MainWindow extends Application {
             Pane rootNode = loader.load();
 
             // Optional, get controller to access specific methods
-            // MainWindowController mainWindowController = loader.getController();
-            // mainWindowController.setModel(...);
+            MainWindowController mainWindowController = loader.getController();
+            mainWindowController.setWordModel(wordModel);
 
             // Create a Scene with the root node and set it on the stage
             Scene scene = new Scene(rootNode);
